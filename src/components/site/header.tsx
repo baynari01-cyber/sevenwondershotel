@@ -94,7 +94,7 @@ export function SiteHeader({ phone }: { phone: string }) {
             aria-label={t("callUs")}
           >
             <Phone className="size-4" />
-            <span className="num">{phone}</span>
+            <span className="ltr-field num">{phone}</span>
           </a>
           <LocaleSwitcher tone={dark ? "dark" : "light"} className="hidden sm:inline-flex" />
           <Button asChild variant={dark ? "inverse" : "accent"} size="sm" className="hidden sm:inline-flex">
@@ -135,7 +135,7 @@ export function SiteHeader({ phone }: { phone: string }) {
           </Button>
           <div className="flex items-center justify-between">
             <a href={`tel:${phone.replace(/\s+/g, "")}`} className="inline-flex items-center gap-2 text-sm">
-              <Phone className="size-4" /> <span className="num">{phone}</span>
+              <Phone className="size-4" /> <span className="ltr-field num">{phone}</span>
             </a>
             <LocaleSwitcher />
           </div>

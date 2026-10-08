@@ -38,8 +38,8 @@ export async function SiteFooter({ settings }: { settings: SettingsDTO }) {
         <div>
           <p className="eyebrow mb-4 text-sand-300">{t("reservations")}</p>
           <ul className="space-y-2 text-sm text-ivory/80">
-            <li><a className="inline-flex items-center gap-2 hover:text-ivory" href={`tel:${settings.phone.replace(/\s+/g, "")}`}><Phone className="size-4 text-sand-300" /><span className="num">{settings.phone}</span></a></li>
-            {settings.phoneSecondary ? <li><a className="inline-flex items-center gap-2 hover:text-ivory" href={`tel:${settings.phoneSecondary.replace(/\s+/g, "")}`}><Phone className="size-4 text-sand-300" /><span className="num">{settings.phoneSecondary}</span></a></li> : null}
+            <li><a className="inline-flex items-center gap-2 hover:text-ivory" href={`tel:${settings.phone.replace(/\s+/g, "")}`}><Phone className="size-4 text-sand-300" /><span className="ltr-field num">{settings.phone}</span></a></li>
+            {settings.phoneSecondary ? <li><a className="inline-flex items-center gap-2 hover:text-ivory" href={`tel:${settings.phoneSecondary.replace(/\s+/g, "")}`}><Phone className="size-4 text-sand-300" /><span className="ltr-field num">{settings.phoneSecondary}</span></a></li> : null}
             <li><a className="inline-flex items-center gap-2 hover:text-ivory" href={`mailto:${settings.email}`}><Mail className="size-4 text-sand-300" /><span className="ltr-field">{settings.email}</span></a></li>
             {settings.facebookUrl ? <li><a className="inline-flex items-center gap-2 hover:text-ivory" href={settings.facebookUrl} target="_blank" rel="noopener noreferrer"><ExternalLink className="size-4 text-sand-300" />{t("followUs")}</a></li> : null}
           </ul>

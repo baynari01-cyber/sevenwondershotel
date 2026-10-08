@@ -75,7 +75,7 @@ export function ReviewStep({ state, availability, quote, loading, error, onEdit,
 
       <Section title={t("guestTitle")} onEdit={() => onEdit(4)} editLabel={t("edit")}>
         <p className="font-medium">{state.guest.firstName} {state.guest.lastName}</p>
-        <p className="text-muted-foreground"><span className="ltr-field">{state.guest.email}</span> · <span className="num">{state.guest.phone}</span>{country ? ` · ${locale === "ar" ? country.ar : country.en}` : ""}</p>
+        <p className="text-muted-foreground"><span className="ltr-field">{state.guest.email}</span> · <span className="ltr-field num">{state.guest.phone}</span>{country ? ` · ${locale === "ar" ? country.ar : country.en}` : ""}</p>
         {state.guest.arrivalTime ? <p className="text-muted-foreground"><span className="num">{state.guest.arrivalTime}</span></p> : null}
         {state.guest.specialRequests ? <p className="mt-1 text-sm italic text-muted-foreground" dir="auto">“{state.guest.specialRequests}”</p> : null}
       </Section>

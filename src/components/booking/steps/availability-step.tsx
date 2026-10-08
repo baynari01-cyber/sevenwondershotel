@@ -116,7 +116,7 @@ export function AvailabilityStep({ state, availability, onChange, onBack, onCont
                   <Details rt={rt} locale={locale} currency={availability.currency} />
 
                   <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-charcoal/10 pt-4">
-                    <p className={cn("text-xs font-medium", rt.available <= 2 && !soldOut ? "text-warning" : "text-muted-foreground")}>
+                    <p data-testid="available-count" data-available={rt.available} className={cn("text-xs font-medium", rt.available <= 2 && !soldOut ? "text-warning" : "text-muted-foreground")}>
                       {soldOut ? (tooSmall ? t("tooSmall", { count: guests }) : "") : t("left", { count: rt.available })}
                     </p>
                     <div className="flex items-center gap-2">

@@ -49,7 +49,7 @@ export function formatDate(iso: string | Date, locale: string = "en", style: "sh
 
 export function formatDateTime(date: Date, locale: string = "en"): string {
   const loc = locale === "ar" ? "ar-JO" : "en-GB";
-  return new Intl.DateTimeFormat(loc, { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Amman", numberingSystem: "latn" }).format(date);
+  return new Intl.DateTimeFormat(loc, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Amman", numberingSystem: "latn" }).format(date);
 }
 
 export function formatPercent(value: number, locale: string = "en", digits = 0): string {

@@ -97,7 +97,8 @@ export function BookingWizard({ settings, initial, autoSearch }: { settings: Set
         if (matchesUrl && saved.search.checkIn >= todayIso() && saved.availability) {
           // eslint-disable-next-line react-hooks/set-state-in-effect
           setRestored(true);
-          setState({ ...saved, acceptTerms: false });
+          // With a deep link, availability is re-fetched below so inventory counts are never stale.
+          setState({ ...saved, availability: autoSearch ? null : saved.availability, acceptTerms: false });
         }
       }
     } catch {
@@ -144,13 +145,22 @@ export function BookingWizard({ settings, initial, autoSearch }: { settings: Set
   );
 
   // Deep link from the homepage search bar: run the search immediately.
+  // After a restore from session storage, refresh availability silently so counts are never stale.
   const autoRan = React.useRef(false);
   React.useEffect(() => {
-    if (!hydrated || !autoSearch || autoRan.current || restored) return;
+    if (!hydrated || autoRan.current) return;
     autoRan.current = true;
-    void runSearch(state.search);
+    if (autoSearch && !restored) {
+      // Deferred so the effect itself does not set state synchronously (React Compiler rule).
+      const search = state.search;
+      void Promise.resolve().then(() => runSearch(search));
+    } else if (restored) {
+      void searchAvailabilityAction({ checkIn: state.search.checkIn, checkOut: state.search.checkOut, adults: state.search.adults, children: state.search.children, rooms: state.search.rooms }).then((result) => {
+        if (result.ok) setState((s) => ({ ...s, availability: result.data }));
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hydrated, autoSearch]);
+  }, [hydrated, autoSearch, restored]);
 
   const quotePayload = React.useCallback(
     () => ({
@@ -210,7 +220,7 @@ export function BookingWizard({ settings, initial, autoSearch }: { settings: Set
       <div className="min-w-0 space-y-6">
         <Stepper current={state.step} onJump={go} />
         {state.step === 0 || !avail ? (
-          <SearchStep state={state} settings={settings} onSubmit={(search) => void runSearch(search)} loading={loading || (autoSearch && !avail && !error && !restored)} error={error} />
+          <SearchStep state={state} settings={settings} onSubmit={(search) => void runSearch(search)} loading={loading || (autoSearch && !avail && !error)} error={error} />
         ) : state.step === 1 ? (
           <AvailabilityStep state={state} availability={avail} onChange={(selectedRooms) => setState((s) => ({ ...s, selectedRooms }))} onBack={() => go(0)} onContinue={() => go(2)} />
         ) : state.step === 2 ? (

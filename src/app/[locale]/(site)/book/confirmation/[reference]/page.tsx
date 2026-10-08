@@ -49,7 +49,7 @@ export default async function ConfirmationPage({ params }: { params: Promise<{ l
             <div>
               <p className="font-display text-2xl">{pickLocale(settings, "name", locale)}</p>
               <p className="mt-1 text-sm text-muted-foreground">{pickLocale(settings, "address", locale)}</p>
-              <p className="mt-1 text-sm text-muted-foreground"><span className="num">{settings.phone}</span> · <span className="ltr-field">{settings.email}</span></p>
+              <p className="mt-1 text-sm text-muted-foreground"><span className="ltr-field num">{settings.phone}</span> · <span className="ltr-field">{settings.email}</span></p>
             </div>
             <div className="sm:text-end">
               <p className="text-xs uppercase tracking-widest text-stone">{t("subtitle")}</p>
@@ -75,7 +75,7 @@ export default async function ConfirmationPage({ params }: { params: Promise<{ l
               <h2 className="eyebrow mb-3">{tr("guestTitle")}</h2>
               <p className="text-sm font-medium">{r.guest.firstName} {r.guest.lastName}</p>
               <p className="text-sm text-muted-foreground"><span className="ltr-field">{r.guest.email}</span></p>
-              <p className="text-sm text-muted-foreground"><span className="num">{r.guest.phone}</span>{country ? ` · ${locale === "ar" ? country.ar : country.en}` : ""}</p>
+              <p className="text-sm text-muted-foreground"><span className="ltr-field num">{r.guest.phone}</span>{country ? ` · ${locale === "ar" ? country.ar : country.en}` : ""}</p>
               {r.specialRequests ? <p className="mt-2 text-sm italic text-muted-foreground" dir="auto">“{r.specialRequests}”</p> : null}
             </section>
           </div>
@@ -142,7 +142,7 @@ export default async function ConfirmationPage({ params }: { params: Promise<{ l
             <Button asChild variant="accent"><Link href="/admin/reservations"><LayoutDashboard /> {t("openAdmin")}</Link></Button>
             <Button asChild variant="ghost"><Link href="/book">{t("newSearch")}</Link></Button>
             <p className="flex flex-col gap-1 text-xs text-muted-foreground">
-              <a className="inline-flex items-center gap-1.5" href={`tel:${settings.phone.replace(/\s+/g, "")}`}><Phone className="size-3.5" /><span className="num">{settings.phone}</span></a>
+              <a className="inline-flex items-center gap-1.5" href={`tel:${settings.phone.replace(/\s+/g, "")}`}><Phone className="size-3.5" /><span className="ltr-field num">{settings.phone}</span></a>
               <a className="inline-flex items-center gap-1.5" href={`mailto:${settings.email}`}><Mail className="size-3.5" /><span className="ltr-field">{settings.email}</span></a>
             </p>
           </div>

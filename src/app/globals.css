@@ -164,9 +164,7 @@
   }
   .num {
     font-variant-numeric: tabular-nums lining-nums;
-    direction: ltr;
     unicode-bidi: isolate;
-    display: inline-block;
   }
   @media print {
     .no-print { display: none !important; }
