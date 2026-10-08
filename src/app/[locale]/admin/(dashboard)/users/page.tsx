@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { requireUser } from "@/lib/auth/current-user";
+import { requirePage } from "@/lib/admin/page-guard";
 import { listUsers } from "@/lib/data/admin";
 import { permissionsFor } from "@/lib/auth/permissions";
 import type { Role } from "@/generated/prisma/enums";
@@ -19,7 +19,7 @@ const ROLES: Role[] = ["ADMIN", "MANAGER", "FRONT_DESK", "VIEWER"];
 export default async function UsersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const user = await requireUser("users.manage");
+  const user = await requirePage("users.manage");
   const t = await getTranslations("admin.settings");
   const tr = await getTranslations("role");
   const users = await listUsers();

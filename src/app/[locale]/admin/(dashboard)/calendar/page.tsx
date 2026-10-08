@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
-import { can, requireUser } from "@/lib/auth/current-user";
+import { can } from "@/lib/auth/current-user";
+import { requirePage } from "@/lib/admin/page-guard";
 import { getCalendarData } from "@/lib/data/admin";
 import { isIsoDate, todayIso } from "@/lib/utils/dates";
 import { PageHeader } from "@/components/admin/page-header";
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function CalendarPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { locale: paramLocale } = await params;
   setRequestLocale(paramLocale);
-  const user = await requireUser("calendar.view");
+  const user = await requirePage("calendar.view");
   const sp = await searchParams;
   const locale = await getLocale();
   const t = await getTranslations("admin.calendar");

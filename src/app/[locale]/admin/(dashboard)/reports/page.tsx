@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getLocale, getTranslations, setRequestLocale } from "next-intl/server";
 import { BarChart3, BedDouble, CalendarCheck, Percent, TrendingUp, Wallet, XCircle } from "lucide-react";
-import { requireUser } from "@/lib/auth/current-user";
+import { requirePage } from "@/lib/admin/page-guard";
 import { getReport } from "@/lib/data/reports";
 import { REPORT_PERIODS, type ReportPeriodKey } from "@/lib/reports/metrics";
 import { addDays, isIsoDate } from "@/lib/utils/dates";
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function ReportsPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { locale: paramLocale } = await params;
   setRequestLocale(paramLocale);
-  await requireUser("reports.view");
+  await requirePage("reports.view");
   const sp = await searchParams;
   const locale = await getLocale();
   const t = await getTranslations("admin.reports");

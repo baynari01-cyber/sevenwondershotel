@@ -69,3 +69,24 @@ Mobile project (Pixel 7 emulation):
 ## 6. Final verification run
 
 Filled in after the admin modules were merged — see the end of this file.
+
+### Final run (after all modules were integrated)
+
+| Check | Result |
+| --- | --- |
+| `pnpm typecheck` | 0 errors |
+| `pnpm lint` | 0 errors, 0 warnings |
+| `pnpm test` | 4 files, 39 tests passed (dates 5, pricing 15, availability 10, reports 9) |
+| `pnpm test:integration` | 3 tests passed (concurrency / server-side totals / blocks & closed dates) |
+| `pnpm build` | success; all application routes server-rendered on demand, icons/robots/sitemap static |
+| `pnpm test:e2e` against `next start` (production build) | 12 passed (9 desktop, 3 mobile) |
+
+Admin modules were additionally exercised in the browser by their implementers during this session (results reported in the session log): rooms (category CRUD with photo upload via the magic-byte-validated upload route, physical rooms), rates (rate plans, seasons, overrides incl. bulk update, promotions, extras), content (blocks visible on the public site after edit, gallery, policies), inbox, calendar (end-exclusive bars, block overlap rejection), reports (revenue 4,677.12 / 48 room nights / 56 created / 6 cancelled matched direct SQL for the last-30-days window), settings (change visible on public site), users (self-deactivation and last-admin rules), demo reset (140 reservations reloaded, users kept), and viewer-role authorization (server actions return `FORBIDDEN` when replayed with viewer cookies).
+
+## 7. Not covered / known limitations
+
+- Google Maps embeds could not be rendered inside the sandbox (outbound Google blocked); verified only that the iframe URLs are correct.
+- Image uploads are stored on local disk; the Vercel deployment needs object storage for persistent uploads (documented in `docs/DEPLOYMENT.md`).
+- Real payment processing and transactional email are intentionally out of scope for the demo.
+- Cross-browser testing was limited to Chromium (desktop and Pixel 7 emulation); Safari/Firefox were not available in the environment.
+- Accessibility was checked by code review and keyboard interaction in the lightbox and forms; no automated axe audit was run.

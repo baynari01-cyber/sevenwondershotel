@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { can, requireUser } from "@/lib/auth/current-user";
+import { can } from "@/lib/auth/current-user";
+import { requirePage } from "@/lib/admin/page-guard";
 import { getSettings } from "@/lib/data/public";
 import { PageHeader } from "@/components/admin/page-header";
 import { FinancialForm, HotelProfileForm, PoliciesForm } from "@/components/admin/settings-form";
@@ -21,7 +22,7 @@ type Tab = (typeof TABS)[number];
 export default async function SettingsPage({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const user = await requireUser("settings.view");
+  const user = await requirePage("settings.view");
   const sp = await searchParams;
   const t = await getTranslations("admin.settings");
   const settings = await getSettings();

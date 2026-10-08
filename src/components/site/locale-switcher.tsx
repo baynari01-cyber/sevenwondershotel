@@ -2,9 +2,18 @@
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { cn } from "@/lib/utils/cn";
 
-export function LocaleSwitcher({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
+export function LocaleSwitcher(props: { className?: string; tone?: "light" | "dark" }) {
+  return (
+    <Suspense fallback={<span className={cn("inline-block h-9 w-20", props.className)} aria-hidden="true" />}>
+      <LocaleSwitcherInner {...props} />
+    </Suspense>
+  );
+}
+
+function LocaleSwitcherInner({ className, tone = "light" }: { className?: string; tone?: "light" | "dark" }) {
   const locale = useLocale();
   const t = useTranslations("common");
   const pathname = usePathname();

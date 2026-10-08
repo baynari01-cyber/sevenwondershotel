@@ -25,9 +25,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// Every page reads hotel content, rates and availability from the database, so the whole
+// locale tree renders per request (content edits in the admin are visible immediately).
+export const dynamic = "force-dynamic";
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
