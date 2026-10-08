@@ -942,7 +942,9 @@
       "staysHint": "{count, plural, =1 {1 stay} other {# stays}} in period",
       "revenueHint": "Prorated room totals, excl. taxes and extras",
       "perAvailableNight": "Per available room night",
-      "perSoldNight": "Per sold room night"
+      "perSoldNight": "Per sold room night",
+      "bookingsCount": "{count, plural, =1 {1 booking} other {# bookings}}",
+      "roomNightsCount": "{count, plural, =1 {1 room night} other {# room nights}}"
     },
     "settings": {
       "title": "Settings",

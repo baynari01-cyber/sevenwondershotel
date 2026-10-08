@@ -942,7 +942,9 @@
       "staysHint": "{count, plural, =1 {إقامة واحدة} =2 {إقامتان} other {# إقامة}} في الفترة",
       "revenueHint": "مجاميع الغرف الموزعة نسبياً، دون الضرائب والإضافات",
       "perAvailableNight": "لكل ليلة غرفة متاحة",
-      "perSoldNight": "لكل ليلة غرفة مباعة"
+      "perSoldNight": "لكل ليلة غرفة مباعة",
+      "bookingsCount": "{count, plural, =1 {حجز واحد} =2 {حجزان} other {# حجوزات}}",
+      "roomNightsCount": "{count, plural, =1 {ليلة غرفة واحدة} =2 {ليلتا غرفة} other {# ليالي غرف}}"
     },
     "settings": {
       "title": "الإعدادات",
