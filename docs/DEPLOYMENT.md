@@ -1,5 +1,9 @@
 # Deployment Guide
 
+**Live demo (BAYNARI):** https://sevenwonders-baynari-demo.vercel.app · Arabic: https://sevenwonders-baynari-demo.vercel.app/ar · Dashboard: https://sevenwonders-baynari-demo.vercel.app/admin
+
+Hosted on Vercel (team `baynari01`, project `sevenwonders-baynari-demo`, production branch `claude/modest-davinci-m1lpjz`) with a Neon PostgreSQL project `sevenwonders-hotel-demo` (eu-central-1). Demo account passwords were set as the `DEMO_ADMIN_PASSWORD` environment variable in the Vercel project; the Vercel dashboard shows it under Settings → Environment Variables.
+
 The project is a standard Next.js 16 application with Prisma 7 and PostgreSQL. It is prepared for Vercel with a hosted PostgreSQL database (Neon is used for the BAYNARI demo; any PostgreSQL 14+ works).
 
 ## 1. Environment variables

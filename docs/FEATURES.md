@@ -2,6 +2,8 @@
 
 **A proposal demonstration by BAYNARI** · Jordanian digital solutions studio
 
+Live demo: https://sevenwonders-baynari-demo.vercel.app (Arabic: `/ar`, dashboard: `/admin`).
+
 This document summarises what the demonstration shows, in the language a hotel owner or reservation manager cares about. Everything described below is working software, not a mock-up. Rates, availability and guests in the demo are fictional and clearly labelled as such.
 
 ## What the hotel gets

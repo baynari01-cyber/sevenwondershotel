@@ -83,6 +83,10 @@ Filled in after the admin modules were merged — see the end of this file.
 
 Admin modules were additionally exercised in the browser by their implementers during this session (results reported in the session log): rooms (category CRUD with photo upload via the magic-byte-validated upload route, physical rooms), rates (rate plans, seasons, overrides incl. bulk update, promotions, extras), content (blocks visible on the public site after edit, gallery, policies), inbox, calendar (end-exclusive bars, block overlap rejection), reports (revenue 4,677.12 / 48 room nights / 56 created / 6 cancelled matched direct SQL for the last-30-days window), settings (change visible on public site), users (self-deactivation and last-admin rules), demo reset (140 reservations reloaded, users kept), and viewer-role authorization (server actions return `FORBIDDEN` when replayed with viewer cookies).
 
+### Live deployment
+
+The same Playwright suite was run against https://sevenwonders-baynari-demo.vercel.app (Vercel production, Neon database): 12 passed in 1.4 min. Every public route returned HTTP 200 (first-hit times 0.3–3.2 s including cold starts). The hosted demo dataset was reset to its pristine state afterwards.
+
 ## 7. Not covered / known limitations
 
 - Google Maps embeds could not be rendered inside the sandbox (outbound Google blocked); verified only that the iframe URLs are correct.
